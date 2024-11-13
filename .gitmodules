@@ -1,0 +1,21 @@
+[submodule "modules/axi/axi"]
+	path = modules/axi/axi
+	url = https://github.com/pulp-platform/axi.git
+[submodule "modules/axi/axi2apb"]
+	path = modules/axi/axi2apb
+	url = https://github.com/pulp-platform/axi2apb.git
+[submodule "modules/axi/axi_slice"]
+	path = modules/axi/axi_slice
+	url = https://github.com/pulp-platform/axi_slice.git
+[submodule "modules/axi/axi_spi_master"]
+	path = modules/axi/axi_spi_master
+	url = https://github.com/pulp-platform/axi_spi_master.git
+[submodule "modules/core/scr1"]
+	path = modules/core/scr1
+	url = https://github.com/syntacore/scr1.git
+[submodule "modules/peripherals/apb_uart_sv"]
+	path = modules/peripherals/apb_uart_sv
+	url = https://github.com/pulp-platform/apb_uart_sv.git
+[submodule "modules/peripherals/apb_spi_master"]
+	path = modules/peripherals/apb_spi_master
+	url = https://github.com/pulp-platform/apb_spi_master.git
