@@ -4,8 +4,11 @@
 `include "apb/assign.svh"
 
 module tb_top;
-    logic clk,rst_n;       // Declare clk and rst as a reg
+    localparam int unsigned CLOCK_PERIOD = 20ns;
+    // toggle with RTC period
+    localparam int unsigned RTC_CLOCK_PERIOD = 30.517us;
     
+    logic clk,rst_n,rtc_i;       // Declare clk and rst as a reg
     // apb_uart inputs
     logic        penable, pwrite, pready[1:0], pslverr[1:0], rx, tx;
     logic [02:0] ev;
@@ -16,7 +19,15 @@ module tb_top;
     // Clock generation
     initial begin
         clk = 0;
-        forever #10 clk = ~clk; // 100 MHz clock
+        forever #(CLOCK_PERIOD/2) clk = ~clk; // 100 MHz clock
+    end
+
+    initial begin
+        forever begin
+            rtc_i = 1'b0;
+            #(RTC_CLOCK_PERIOD/2) rtc_i = 1'b1;
+            #(RTC_CLOCK_PERIOD/2) rtc_i = 1'b0;
+        end
     end
 
     // reset generation
@@ -50,6 +61,9 @@ module tb_top;
     // Instantiate the top-level module
     top uut (
       .rst(rst_n), 
+      .pwrup_rst_n(rst_n),
+      .test_rst_n(rst_n),
+      .cpu_rst_n(rst_n),
       .intr(1'b0),
       .rx(rx), 
       .spi_sdi(4'd0), 
@@ -59,6 +73,7 @@ module tb_top;
       .spi_csn(), 
       .spi_sdo(), 
       .spi_mode(), 
-      .clk(clk));
+      .clk(clk),
+      .rtc_clk(rtc_i));
 
 endmodule

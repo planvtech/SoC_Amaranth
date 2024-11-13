@@ -1,0 +1,27 @@
+diff --git a/src/includes/scr1_arch_description.svh b/src/includes/scr1_arch_description.svh
+index 018d0d7..8acf448 100644
+--- a/src/includes/scr1_arch_description.svh
++++ b/src/includes/scr1_arch_description.svh
+@@ -140,11 +140,11 @@ parameter int unsigned SCR1_MTVEC_BASE_WR_BITS = 26;    // number of writable hi
+ `define SCR1_MCOUNTEN_EN            // enable custom MCOUNTEN CSR for counter control
+ 
+ // Uncore options
+-`define SCR1_DBG_EN                 // enable Debug Subsystem (TAPC, DM, SCU, HDU)
++//`define SCR1_DBG_EN                 // enable Debug Subsystem (TAPC, DM, SCU, HDU)
+ `define SCR1_TDU_EN                 // enable Trigger Debug Unit (hardware breakpoints)
+ parameter int unsigned SCR1_TDU_TRIG_NUM = 2;   // number of hardware triggers
+ `define SCR1_TDU_ICOUNT_EN          // enable hardware triggers on instruction counter
+-`define SCR1_IPIC_EN                // enable Integrated Programmable Interrupt Controller
++// `define SCR1_IPIC_EN                // enable Integrated Programmable Interrupt Controller
+ `define SCR1_IPIC_SYNC_EN           // enable IPIC synchronizer
+ `define SCR1_TCM_EN                 // enable Tightly-Coupled Memory
+ 
+@@ -167,7 +167,7 @@ parameter int unsigned SCR1_TDU_TRIG_NUM = 2;   // number of hardware triggers
+ 
+ `ifndef SCR1_ARCH_CUSTOM
+ // Default address constants (if scr1_arch_custom.svh is not used)
+-parameter bit [`SCR1_XLEN-1:0]          SCR1_ARCH_RST_VECTOR        = 'h200;            // Reset vector value (start address after reset)
++parameter bit [`SCR1_XLEN-1:0]          SCR1_ARCH_RST_VECTOR        = 'h00;            // Reset vector value (start address after reset)
+ parameter bit [`SCR1_XLEN-1:0]          SCR1_ARCH_MTVEC_BASE        = 'h1C0;            // MTVEC.base field reset value, or constant value for MTVEC.base bits that are hardwired
+ 
+ parameter bit [`SCR1_DMEM_AWIDTH-1:0]   SCR1_TCM_ADDR_MASK          = 'hFFFF0000;       // TCM mask and size; size in bytes is two's complement of the mask value
