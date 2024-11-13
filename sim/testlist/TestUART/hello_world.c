@@ -4,8 +4,8 @@
 
 int hello_world()
 {
-    uart_set_cfg(0, 27);
-    uart_send("Hello World", 12);
+    uart_set_cfg(0, 433);
+    uart_send("Hello World\n", 14);
     uart_wait_tx_done();
     return 0;
 }

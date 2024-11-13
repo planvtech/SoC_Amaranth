@@ -95,7 +95,7 @@ clean:
 	@echo "Cleaning up..."
 	rm -f  *.v *.vh
 	rm -rf $(LIBRARY)
-	rm -rf *.vcd
+	rm -rf sim/*.vcd
 	rm -rf uart transcript
 
 .PHONY: all generate compile rtl simulate clean

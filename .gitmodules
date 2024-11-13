@@ -19,3 +19,9 @@
 [submodule "modules/peripherals/apb_spi_master"]
 	path = modules/peripherals/apb_spi_master
 	url = https://github.com/pulp-platform/apb_spi_master.git
+[submodule "modules/peripherals/apb"]
+	path = modules/peripherals/apb
+	url = https://github.com/pulp-platform/apb.git
+[submodule "modules/peripherals/common_cells"]
+	path = modules/peripherals/common_cells
+	url = https://github.com/pulp-platform/common_cells.git
