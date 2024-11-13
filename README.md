@@ -1,2 +1,2 @@
 # SoC_Amaranth
-SoC integrated using Amaratnh HDL
+SoC integrated using Amaranth HDL
