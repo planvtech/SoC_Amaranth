@@ -32,7 +32,7 @@ Before running the project, ensure you have the following environment variables 
 ## Getting Started
 Clone this repository to your local machine:
 ```
-git clone https://github.com/planvtech/CVA6_subsys.git --recursive
+git clone https://github.com/planvtech/SoC_Amaranth.git --recursive
 ```
 Run Simulation
 ```
