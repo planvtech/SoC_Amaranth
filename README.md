@@ -6,6 +6,8 @@ This project demonstrates integrating **Amaranth HDL**, a Python-based hardware 
 
 **Amaranth HDL** offers a flexible approach to hardware design by leveraging Python for high-level abstraction, making code more modular and easier to maintain. However, many complex SoC components—such as CPU cores, interconnects, and peripherals—are commonly developed in SystemVerilog or Verilog. This project investigates the viability and challenges of using Amaranth HDL to manage and integrate these pre-existing SystemVerilog modules within an SoC design.
 
+![SoC_Amaranth block diagram](./SoC_Amaranth.png)
+
 The SoC in this project includes the following modules:
 - **CPU Core**: RISC-V based processor core, cloned from the [SCR1 project](https://github.com/syntacore/scr1)
 - **Bus Interconnect**: System bus with AXI protocol support, cloned from the [PULP project](https://github.com/pulp-platform)
