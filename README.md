@@ -14,6 +14,15 @@ The SoC in this project includes the following modules:
 - **Memory**: Storage for code and data
 - **Peripherals**: UART and SPI, cloned from the [PULP project](https://github.com/pulp-platform)
 
+## Memory mapping
+
+| Slave | Start Address | Size |
+|---|---|---|
+| RAM | 0x00000000 | 0x100000 |
+| APB UART | 0x10000000 | 0x3000 |
+| APB SPI Master | 0x20000000 | 0x3000 |
+| ROM | 0x50000000 | 0x10000 |
+
 ## Prerequisites
 
 Before running the project, ensure you have the following environment variables configured:
