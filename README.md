@@ -17,10 +17,10 @@ The SoC in this project includes the following modules:
 ## Prerequisites
 
 Before running the project, ensure you have the following environment variables configured:
+***Amaranth HDL*** install from this [link](https://amaranth-lang.org/docs/amaranth/latest/install.html)
 
 ## Getting Started
 Clone this repository to your local machine:
-
 ```
 git clone https://github.com/planvtech/CVA6_subsys.git --recursive
 ```
