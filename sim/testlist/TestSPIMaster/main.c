@@ -17,7 +17,9 @@ int main()
   /* sets direction for SPI master pins with only one CS */
   spi_setup_master(1);
   uart_set_cfg(0,434);
-  uart_send("SPI Test \n",11);
+  uart_send("SPI Test \n",12);
+  uart_wait_tx_done();
+
 
   for (int i = 0; i < 3000; i++) {
     //wait some time to have proper power up of external flash
@@ -38,7 +40,7 @@ int main()
 
 
 
-  uart_send("FLASH connected SPI\n", 20);
+  uart_send("FLASH connected SPI \n", 23);
   uart_wait_tx_done();
 
   

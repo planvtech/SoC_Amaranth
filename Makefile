@@ -8,7 +8,7 @@ VLOG_FLAGS           += -svinputport=compat -incr -64 -nologo -quiet -suppress 1
 VLOG_FLAGS           += -suppress 2986 
 VLOG_FLAGS           += -suppress 2879 
 VSIM_FLAGS           += +TESTNAME=$(TESTNAME) 
-VSIM_FLAGS           += -suppress 3999
+VSIM_FLAGS           += -suppress 3999 -suppress 8885
 
 # Define directories and library
 PERIPHERAL           = modules/peripherals
@@ -49,7 +49,8 @@ VERILOG_FILES += $(filter-out %_pkg.sv %_test.sv, $(wildcard $(APB_DIR)/src/*.sv
                  $(filter-out %_pkg.sv,$(wildcard $(COMMON_CELLS)/src/*.sv)) \
                  $(filter-out %_pkg.sv,$(wildcard $(COMMON_CELLS)/src/deprecated/fifo*.sv))
 
-TB_FILES += $(filter-out %_pkg.sv,$(wildcard $(TB)/*.sv)) 
+TB_FILES += $(filter-out %_pkg.sv,$(wildcard $(TB)/*.sv))
+TB_FILES += $(filter-out %_pkg.sv,$(wildcard $(TB)/*.v)) 
 
 MISC_PKG += $(wildcard $(COMMON_CELLS)/src/*_pkg.sv) \
             $(wildcard $(APB_DIR)/src/*_pkg.sv) \
@@ -105,8 +106,11 @@ clean:
 	rm -f *.v *.vh
 	rm -rf $(LIBRARY)
 	rm -rf sim/*.vcd
+	rm -rf $(GEN_VERILOG_FILE)
 	rm -rf uart transcript
-	make -C sim/testlist/$(TESTNAME) clean
+	@for dir in $(wildcard sim/testlist/*/); do \
+		make -C $$dir clean || echo "No clean target in $$dir"; \
+	done
 	cd $(CPU) && git apply -R update_ip.patch
 	rm -rf $(CPU)/update_ip.patch
 

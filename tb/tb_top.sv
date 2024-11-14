@@ -1,8 +1,6 @@
 // testbench.v
 `timescale 1ns/1ps
 
-`include "apb/assign.svh"
-
 module tb_top;
     localparam int unsigned CLOCK_PERIOD = 20ns;
     // toggle with RTC period
@@ -10,11 +8,12 @@ module tb_top;
     
     logic clk,rst_n,rtc_i;       // Declare clk and rst as a reg
     // apb_uart inputs
-    logic        penable, pwrite, pready[1:0], pslverr[1:0], rx, tx;
+    logic        rx, tx;
     logic [02:0] ev;
-    logic [01:0] psel;
-    logic [31:0] prdata [1:0], pwdata;
-    logic [11:0] paddr;
+    // apb spi
+    wire [03:0] spi_sdo;
+    wire [03:0] spi_sdi;
+    wire [03:0] spi_csn;
 
     // Clock generation
     initial begin
@@ -50,10 +49,8 @@ module tb_top;
         #100;
         $readmemh(testdir, tb_top.uut.axi_ram.mem);
         $dumpfile("sim/testbench.vcd");
-        $dumpvars(1, tb_top.uut.axi2apb_uart);
-        $dumpvars(0, tb_top.uut.apb_uart);
-        $dumpvars(0, tb_top.i_uart_bus);
-        $dumpvars(1, tb_top.uut.cpu_core);
+        $dumpvars(0, tb_top.uut.apb_spi_master);
+        $dumpvars(0, tb_top.flash);
         #10000000 $finish; // Run simulation for 1,000,000ns (1ms)
     end
 
@@ -66,14 +63,27 @@ module tb_top;
       .cpu_rst_n(rst_n),
       .intr(1'b0),
       .rx(rx), 
-      .spi_sdi(4'd0), 
+      .spi_sdi(spi_sdi), 
       .tx(tx), 
       .ev(), 
-      .spi_clk(), 
-      .spi_csn(), 
-      .spi_sdo(), 
+      .spi_clk(spi_clk), 
+      .spi_csn(spi_csn), 
+      .spi_sdo(spi_sdo), 
       .spi_mode(), 
       .clk(clk),
       .rtc_clk(rtc_i));
+
+      
+    // flash model
+    s25fl128s flash
+    (
+      .SCK     (spi_clk),
+      .SI      (spi_sdo[0]),
+      .CSNeg   (spi_csn[0]),
+      .HOLDNeg (), //Internal pull-up
+      .WPNeg   (), //Internal pull-up
+      .SO      (spi_sdi[1]),
+      .RSTNeg  (1'b1)
+    );
 
 endmodule

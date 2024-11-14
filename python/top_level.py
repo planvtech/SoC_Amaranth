@@ -574,7 +574,7 @@ class TopLevel(Elaboratable):
             p_APB_ADDR_WIDTH=12,
             i_HCLK=self.clk,
             i_HRESETn=self.rst,
-            i_PADDR=self.apb_master[1].paddr[2:14],
+            i_PADDR=self.apb_master[1].paddr[0:12],
             i_PWDATA=self.apb_master[1].pwdata,
             i_PWRITE=self.apb_master[1].pwrite,
             i_PSEL=self.apb_master[1].psel,
